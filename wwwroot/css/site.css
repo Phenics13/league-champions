@@ -1,0 +1,70 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.champion-card {
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.champion-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+.ability-selected {
+  cursor: pointer;
+  border: 2px solid #258cfb;
+  margin: 0 !important;
+}
+
+.ability {
+  cursor: pointer;
+  margin: 2px;
+}
+
+.ability:hover {
+  border: 2px solid #258cfb;
+  margin: 0;
+}
+
+.blue-rectangle {
+  background: linear-gradient(to right, #4064a6, #5b92f3);
+  height: 0.5rem;
+  width: 3rem;
+}
+
+.rectangle {
+  background: rgb(60, 60, 60);
+  height: 0.5rem;
+  width: 3rem;
+}
+
+.skin-btn {
+  font-size: 2.5em;
+  color: black;
+  text-decoration: underline;
+}

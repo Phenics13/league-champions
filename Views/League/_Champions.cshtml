@@ -1,0 +1,70 @@
+﻿@model List<Champion>
+@{
+}
+
+
+@if (Model.Count == 0)
+{
+  <div class="row mt-5">
+    <div class="col-md-12 text-center">
+      <h1>No Champions found!</h1>
+    </div>
+  </div>
+}
+else
+{
+  <div class="row mt-4">
+    @foreach (var champion in Model)
+    {
+      <div class="col-md-3 mb-4" onclick="pickChampion(@champion.Id)">
+        <div class="card champion-card">
+          <img src="@champion.ImageUrl" class="card-img-top" alt="@champion.Name">
+
+          <div class="card-body">
+            <h5 class="card-title mb-4">@champion.Name</h5>
+            <div class="champion-price d-flex justify-content-between">
+              <span class="blue-essence-price">
+                <img src="/img/prices/BE_icon.webp" class="img-fluid" alt="blue essence price">
+                @champion.Price?.BlueEssence
+              </span>
+              <span class="riot-points-price">
+                <img src="/img/prices/RP_icon.webp" class="img-fluid" alt="blue essence price">
+                @champion.Price?.RiotPoints
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+
+  @if (ViewBag.TotalPages > 1) {
+  <div class="row mt-2">
+    <div class="col-md-6 text-end">
+      @if (ViewBag.CurrentPage > 1)
+      {
+        <button onclick="loadChampions(@ViewBag.CurrentPage - 1)" class="btn btn-primary">&lt;</button>
+      }
+      else
+      {
+        <button class="btn btn-primary" disabled>&lt;</button>
+      }
+    </div>
+    <div class="col-md-1 text-center">
+      <button class="btn btn-default">@ViewBag.CurrentPage</button>
+    </div>
+    <div class="col-md-5 text-start">
+      @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+      {
+        <button onclick="loadChampions(@ViewBag.CurrentPage + 1)" class="btn btn-primary">&gt;</button>
+      }
+      else
+      {
+        <button class="btn btn-primary" disabled>&gt;</button>
+      }
+    </div>
+  </div>
+  }
+}
+
+

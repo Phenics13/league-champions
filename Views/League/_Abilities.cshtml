@@ -1,0 +1,16 @@
+﻿@using League.ViewModels
+@model AbilitiesModel
+@{
+}
+
+<h3>Abilities</h3>
+<div class="row align-items-center">
+  @foreach (var ability in Model.Abilities)
+  {
+    <div class="col-md-2">
+      <img src="@ability.ImageUrl" class="rounded ability @(ability == Model.SelectedAbility ? "ability-selected" : "")" alt="@ability.Name" onclick="pickAbility(@ability.Id)">
+    </div>
+  }
+</div>
+<h5 class="mt-3">@Model.SelectedAbility?.Name</h5>
+<p>@Model.SelectedAbility?.Description</p>

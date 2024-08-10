@@ -1,0 +1,97 @@
+﻿@model Champion
+@using League.ViewModels
+@{
+}
+
+<div class="row mt-5 align-items-center">
+  <div class="col-md-6 text-center">
+    <img src="@Model.ImageUrl" class="img-fluid rounded" alt="@Model.Name">
+      <a 
+        class="mt-2 btn btn-outline-dark border-0" 
+        style="text-decoration: underline;"
+        asp-action="Skin"
+        asp-controller="League"
+        asp-route-id="@Model.Id"
+      >
+        More Skins
+      </a>
+    </div>
+  <div class="col-md-6">
+    <h1>@Model.Name</h1>
+    <p>@Model.Lore</p>
+    <ul class="list-group list-group-flush">
+      @if (Model.Positions != null)
+      {
+        <li class="list-group-item">Position(s):</li>
+        @foreach (var position in Model.Positions)
+        {
+          <li class="list-group-item">
+            <img src="@position.ImageUrl" class="img-fluid inline" alt="@position.Name">
+            <span>@position.Name</span>
+          </li>
+        }
+      }
+    </ul>
+    <ul class="list-group list-group-flush">
+      @if (Model.Classes != null)
+      {
+        <li class="list-group-item">Class(es):</li>
+        @foreach (var cls in Model.Classes)
+        {
+          <li class="list-group-item">
+            <img src="@cls.ImageUrl" class="img-fluid inline" alt="@cls.Name">
+            <span>@cls.Name</span>
+          </li>
+        }
+      }
+      <li class="list-group-item">
+        <span>Range: </span>
+        <img src="@Model.Range?.ImageUrl" class="img-fluid inline" alt="@Model.Range?.Name">
+        <span>@Model.Range?.Name</span>
+      </li>
+    </ul>
+    <div class="row mt-3 align-items-baseline">
+      <p class="m-0" style="width: min-content;">Difficulty: </p>
+      @for (int i = 0; i < Model.Difficulty; i++)
+      {
+        <div class="blue-rectangle m-1"></div>
+      }
+      @for (int i = Model.Difficulty; i < 3; i++)
+      {
+        <div class="rectangle m-1"></div>
+      }
+    </div>
+  </div>
+</div>
+
+<div class="row mt-5">
+  <div class="col-md-8">
+    <div id="AbilitiesContainer" style="min-height: 20rem;">
+      <!-- Abilities here -->
+      <partial name="_Abilities" model="
+        new AbilitiesModel { 
+          SelectedAbility = Model.PassiveAbility,
+          PassiveAbility = Model.PassiveAbility,
+          FirstAbility = Model.FirstAbility,
+          SecondAbility = Model.SecondAbility,
+          ThirdAbility = Model.ThirdAbility,
+          UltimateAbility = Model.UltimateAbility
+        }" 
+      />
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">
+        <h5>Champion Stats</h5>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Damage: @Model.Damage</li>
+        <li class="list-group-item">Toughness: @Model.Toughness</li>
+        <li class="list-group-item">Control: @Model.Control</li>
+        <li class="list-group-item">Mobility: @Model.Mobility</li>
+        <li class="list-group-item">Utility: @Model.Utility</li>
+      </ul>
+    </div>
+  </div>  
+</div>

@@ -1,0 +1,63 @@
+﻿@using League.ViewModels
+@model ChampionsFormModel
+@{
+}
+
+<div class="row">
+  <div class="col-md-12">
+    <form asp-controller="League" asp-action="FilterChampions" id="filterForm">
+      <div class="row align-items-center">
+        <div class="col-md-3">
+          <div class="form-group">
+            <input type="text" class="form-control" id="search" name="search" placeholder="Enter Champion Name">
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <select class="form-select" name="rangeId" id="rangeId">
+              <option value="">All Ranges</option>
+              @foreach (var range in Model.Ranges)
+              {
+                <option value="@range.Id">@range.Name</option>
+              }
+            </select>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <select class="form-select" name="sortBy" id="sortBy">
+              <option value="from new to old">From new</option>
+              <option value="from old to new">From old</option>
+              <option value="A-Z">A-Z</option>
+              <option value="Z-A">Z-A</option>
+              <option value="from cheap to expensive">From cheap</option>
+              <option value="from expensive to cheap">From expensive</option>
+              <option value="from easy to hard">From easy</option>
+              <option value="from hard to easy">From hard</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group d-flex justify-content-between">
+            <input class="form-check-input d-none" type="radio" name="positionId" id="0" value="0">
+            <label class="form-check-label position-label opacity-100" for="0">
+              <img src="~/img/positions/Unplayed_icon.webp" alt="All">
+            </label>
+            @foreach (var position in Model.Positions)
+            {
+              <div class="form-check px-1">
+                <input class="form-check-input d-none" type="radio" name="positionId" id="@position.Id" value="@position.Id">
+                <label class="form-check-label position-label opacity-50" for="@position.Id">
+                  <img src="@position.ImageUrl" alt="@position.Name">
+                </label>
+              </div>
+            }
+          </div>
+        </div>
+        <div class="col-md-2">
+          <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
